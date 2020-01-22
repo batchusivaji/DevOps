@@ -1,0 +1,27 @@
+{
+    "variables": {
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "source_image_id": "ami-06d51e91cea0dac8d",
+        "image_region": "us-west-2"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "ami_name": "tomcatfrompacker",
+            "ami_description": "tomcat from packer",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "{{user `image_region`}}",
+            "instance_type": "t2.micro",
+            "source_ami": "{{user `source_image_id`}}",
+            "ssh_username": "ubuntu"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "ansible",
+            "playbook_file": "./playbook/tomcat_ansible/tomcat8.yml"
+        }
+    ]
+} 

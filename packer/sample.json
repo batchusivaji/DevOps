@@ -1,0 +1,21 @@
+{
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "ami_name": "tomcatfrompacker",
+            "ami_description": "tomcat from packer",
+            "access_key": "AKIA3TXJQGAJFDVFHD7C",
+            "secret_key": "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",
+            "region": "us-west-2",
+            "instance_type": "t2.micro",
+            "source_ami": "ami-06d51e91cea0dac8d",
+            "ssh_username": "ubuntu"
+
+    }],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "./installtomcat.sh"
+        }
+    ]
+}

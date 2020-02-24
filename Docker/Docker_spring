@@ -1,0 +1,8 @@
+FROM maven:3-jdk-8
+LABEL Author="ramjagadeesh"
+RUN git clone https://github.com/spring-projects/spring-petclinic.git && cd spring-petclinic && mvn clean package
+
+FROM tomcat:8
+LABEL Author="ramjagadeesh"
+copy --from=maveen:3-jdk-8  /spring-petclinic/target/*.jar /usr/local/tomcat/webapps/*.jar
+CMD ["catalina.sh", "run"]
